@@ -34,5 +34,5 @@ pub fn main() void {
         \\1: {}
         \\2: {}
         \\
-        , .{part1, part2});
+    , .{ part1, part2 });
 }

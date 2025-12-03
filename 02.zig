@@ -10,7 +10,7 @@ pub fn main() !void {
     while (it.next()) |range| {
         const index = std.mem.findScalar(u8, range, '-').?;
         const lo = try std.fmt.parseUnsigned(usize, range[0..index], 10);
-        const hi = try std.fmt.parseUnsigned(usize, range[index + 1..], 10);
+        const hi = try std.fmt.parseUnsigned(usize, range[index + 1 ..], 10);
 
         const tens = comptime blk: {
             var a: [16]usize = @splat(1);
@@ -40,5 +40,5 @@ pub fn main() !void {
         \\1: {}
         \\2: {}
         \\
-        , .{part1, part2});
+    , .{ part1, part2 });
 }
