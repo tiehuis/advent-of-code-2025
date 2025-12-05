@@ -10,11 +10,9 @@ pub fn main() !void {
     var ranges_storage: [256]Range = undefined;
     var ranges: std.ArrayList(Range) = .initBuffer(&ranges_storage);
 
-    var it = std.mem.splitScalar(u8, input, '\n');
+    var it = std.mem.tokenizeScalar(u8, input, '\n');
     while (it.next()) |line| {
-        if (line.len == 0) break;
-
-        const index = std.mem.findScalar(u8, line, '-').?;
+        const index = std.mem.findScalar(u8, line, '-') orelse break;
         const lo = try std.fmt.parseUnsigned(usize, line[0..index], 10);
         const hi = try std.fmt.parseUnsigned(usize, line[index + 1 ..], 10);
 
@@ -57,8 +55,6 @@ pub fn main() !void {
     }
 
     while (it.next()) |line| {
-        if (line.len == 0) break;
-
         const n = try std.fmt.parseUnsigned(usize, line, 10);
 
         for (ranges.items) |r| {
